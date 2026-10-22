@@ -1,0 +1,44 @@
+
+-- PLP Week 4 Database Assignment
+-- Advanced SQL Queries and Aggregations
+
+-- Question 1: Total payment amount by payment date,
+-- ordered from highest to lowest, showing the top 5.
+
+SELECT
+    paymentDate,
+    SUM(amount) AS total_payment
+FROM payments
+GROUP BY paymentDate
+ORDER BY paymentDate DESC
+LIMIT 5;
+
+
+-- Question 2: Average credit limit by customer and country.
+
+SELECT
+    customerName,
+    country,
+    AVG(creditLimit) AS average_credit_limit
+FROM customers
+GROUP BY customerName, country;
+
+
+-- Question 3: Total order value using quantityOrdered * priceEach.
+
+SELECT
+    productCode,
+    quantityOrdered,
+    SUM(quantityOrdered * priceEach) AS total_order_value
+FROM orderdetails
+GROUP BY productCode, quantityOrdered;
+
+
+-- Question 4: Maximum payment amount by check number.
+
+SELECT
+    checkNumber,
+    MAX(amount) AS highest_payment
+FROM payments
+GROUP BY checkNumber;
+
